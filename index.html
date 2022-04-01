@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="shortcut icon" href="favicon.ico">
+    <script>
+
+    </script>
+    <style>
+        @font-face {
+        font-family: 'Arita-dotum-Medium';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Arita-dotum-Medium.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;}
+        * { margin: 0; padding: 0; list-style: none; font-family: 'Arita-dotum-Medium';}
+        header { width: 100%; height: 60px; border: 1px solid #ddd; position: relative;}
+        #logo { width: 130px; height: 35px; float: left; margin-left: 55px; margin-top: 12px;}
+        #icon_menu { width: 130px; height: 25px; float: right; margin-right: 55px; margin-top: 17px; }
+        #icon_menu>li { float: left; margin-left: 10px; cursor: pointer;}
+        #menu { width: 800px; height: 60px; line-height: 60px; position: absolute; left: 0; right: 0; margin: auto; top: 0; text-align: center;}
+        #menu>li { display: inline-block; margin: 0 5px; font-size: 16px; position: relative;}
+        #menu>li>.menu_line { width: 0; height: 3px; background-color: #000; position: absolute; left: 0; right: 0; bottom: 0; margin: auto; transition: 0.5s;}
+        #menu>li:hover>.menu_line { width: 100%; }
+        #slide { width: 100%; height: 600px; background: url(images/slide1.jpg) center 0 no-repeat; position: relative;}
+        #slide_imgbox { width: 500%; height: 600px; position: absolute;}
+        #slide_imgbox>li { width: 20%; height: 600px; float: left; position: relative;}
+        #slide_imgbox>li:nth-child(1) { background: url(images/slide1.jpg) center no-repeat;}
+        #slide_imgbox>li:nth-child(2) { background: url(images/slide2.jpg) center no-repeat;}
+        #slide_imgbox>li:nth-child(3) { background: url(images/slide3.jpg) center no-repeat;}
+        #slide_imgbox>li:nth-child(4) { background: url(images/slide4.jpg) center no-repeat;}
+        #slide_imgbox>li:nth-child(5) { background: url(images/slide5.jpg) center no-repeat;}
+        .slide_text { width: 500px; height: 220px; border: 1px solid #000; position: absolute; left: 25%; top: 190px;}
+        .slide_text>h2 {}
+        .slide_text>h4 {}
+        #slide_btbox { width: 300px; height: 50px; border: 1px solid #000; position: absolute; left: 0; right: 0; margin: auto; bottom: 20px; line-height: 50px; text-align: center;}
+        #slide_btbox>img { vertical-align: middle;}
+        #slide_btbox>ul { display: inline-block; vertical-align: middle;}
+        #slide_btbox>ul>li { width: 10px; height: 10px; border-radius: 10px; background-color: rgba(0,0,0,0.7); display: inline-block; vertical-align: middle; margin: 2px;}
+        #slide_btbox>ul>li:nth-child(1) { background-color: transparent; border: 2px solid #000;}
+        #best { width: 100%; height: 900px; border: 1px solid #000; position: relative; overflow: hidden;}
+        #best_product { width: 100%; height: 900px; position: absolute; left: 0; top: 0;}
+        #best_product_bg1 { width: 100%; height: 460px;}
+        #best_product_bg2 { width: 100%; height: 460px; background-color: white;}
+        #best_product_box { width: 1200px;; height: 800px; position: absolute; top: 50px; left: 0; right: 0; margin: auto; text-align: center;}
+        #best_product_box>h2 { line-height: 100px;}
+        #best_product_box>ul { margin-top: 20px;}
+        #best_product_box>ul>li { width: 326px; height: 606px; margin: 5px; background-color: red; float: left;}
+        .best_product { width: 100%;}
+        #best_product_box>ul>li>h4 { font-size: 20px; margin-top: 30px;}
+        #best_prevbtn { position: absolute; top: 0; bottom: 0; margin: auto; left: -50px;}
+        #best_nextbtn { position: absolute; top: 0; bottom: 0; margin: auto; right: -50px;}
+        #banner { width: 1200px; height: 650px; border: 1px solid #000; margin: auto; margin-top: 150px;}
+        #banner>ul { }
+        #banner>ul>li { width: 314px; height: 640px; margin-left: 66px; margin-right: 20px; margin-top: 5px; background-color: #ddd; float: left; position: relative;}
+        #banner>ul>li>img { width: 100%;}
+        .banner_rotate { width: 300px; height: 60px; line-height: 60px; position: absolute; left: -185px; top: 120px; background-color: red; border: 1px solid #000; transform: rotate(-90deg); text-align: right;}
+        #banner2 { width: 1200px; height: 1600px; margin: auto; margin-top: 80px; border: 2px solid #000; position: relative;}
+        #banner2_box1 { width: 670px; height: 540px; background-color: #ff0; position: absolute; left: 90px; top: 90px; }
+        #banner2_box2 { width: 370px; height: 725px; background-color: #0ff; position: absolute; right: 20px; top: 130px;}
+        #banner2_box3 { width: 370px; height: 705px; background-color: #3c0; position: absolute; left: 60px; bottom: 170px;}
+        #banner2_box4 { width: 670px; height: 540px; background-color: #f6f; position: absolute; right: 20px; bottom: 30px;}
+        #banner2>div>img { width: 100%;}
+        #banner2>div>h3 { }
+        #banner2>div>p { }
+        #sns { width: 1200px; height: 400px; margin: auto; border: 1px solid #000; text-align: center;}
+        #sns>h2 { line-height: 65px;}
+        #sns>h4 { }
+        #sns>ul { width: 1050px; height: 210px; margin: auto;}
+        #sns>ul>li { width: 200px; height: 200px; margin: 5px; background-color: #ddd; float: left; overflow: hidden; position: relative;}
+        .sns_img { width: 100%; position: absolute; left: 0; top: 0; transition: 0.5s;}
+        #sns>ul>li:hover>.sns_img { top: -10px;}
+        .sns_cart { position: absolute; left: 6px; top: 6px;}
+        #sns>h2>span { font-weight: 100;}
+        .sns_hover_box { width: 100%; height: 60px; background-color: yellow; position: absolute; left: 0; bottom: -60px; transition: 0.5s; line-height: 30px;}
+        #sns>ul>li:hover>.sns_hover_box { bottom: 0;}
+        .sns_hover_box>p { width: 180px; height: 30px; margin: auto; background-color: #3cf; word-spacing: nowrap; text-overflow: ellipsis; overflow: hidden;}
+        .sns_hover_box>p>img { vertical-align: middle;}
+        #sns>button { width: 150px; height: 40px; border: 1px solid #000; background-color: #fff; margin-top: 30px; transition: 0.5s;}
+        #sns>button:hover { background-color: #4577be; color: #fff; background-color: #4577be;}
+        footer { width: 100%; height: 250px; background-color: #eee;}
+        #footer1 { width: 100%; height: 50px; border-top: 1px solid #000; border-bottom: 1px solid #000;}
+        #footer1_box { width: 1200px; height: 25px; line-height: 25px; margin: auto; margin-top: 12px;}
+        #footer1_menu1 { width: 940px; height: 25px; float: left;}
+        #footer1_menu1>ul { margin: auto;}
+        #footer1_menu1>ul>li { float: left; margin: 16px; margin-top: 0;}
+        #footer1_menu2 { width: 170px; height: 25px; float: right; }
+        #footer1_menu2>ul {}
+        #footer1_menu2>ul>li { float: left; margin: 17px; margin-top: 0; margin-left: 0;} 
+        #footer1_menu2>ul>li>img { width: 110%; }
+        #footer2 { width: 1200px; height: 200px; margin: auto; background-color: #ff0;}
+        #footer2_left { width: 620px; height: 120px; margin-top: 10px; float: left; background-color: red;}
+        #footer2_left>ul {}
+        #footer2_left>ul>li { float: left;}
+        #footer2_right { width: 260px; height: 40px; margin-top: 20px; float: right; background-color: blue;}
+        #footer2_right>select { width: 260px; height: 40px;}
+    </style>
+</head>
+<body>
+    <header>
+        <h1 id="logo"><img src="laneige-logo.svg" alt=""></h1>
+        <ul id="icon_menu">
+            <li><img src="icons/header-icon_1.png" alt=""></li>
+            <li><img src="icons/header-icon_2.png" alt=""></li>
+            <li><img src="icons/header-icon_3.png" alt=""></li>
+        </ul>
+        <ul id="menu">
+            <li>브랜드<div class="menu_line"></div></li>
+            <li>미츠 아트<div class="menu_line"></div></li>
+            <li>베스트 & 신상품<div class="menu_line"></div></li>
+            <li>스킨케어<div class="menu_line"></div></li>
+            <li>메이크업<div class="menu_line"></div></li>
+            <li>옴므<div class="menu_line"></div></li>
+            <li>이벤트<div class="menu_line"></div></li>
+        </ul>
+    </header>
+
+    <!--  -->
+
+    <div id="slide">
+        <ul id="slide_imgbox">
+            <li>
+                <div class="slide_text">
+                    <h2>ALL NEW 워터뱅크 블루 히알루로닉</h2>
+                    <h4>1/2000 사이즈의 초소형 블루 히알루론산이 피부 깊은 곳부터. 빈틈없이. 건강한 피부로 풀 리페어 보습</h4>
+                </div>
+            </li>
+            <li>
+                <div class="slide_text">
+                    <h2></h2>
+                    <h4></h4>
+                </div>
+            </li>
+            <li>
+                <div class="slide_text">
+                    <h2></h2>
+                    <h4></h4>
+                </div>
+            </li>
+            <li>
+                <div class="slide_text">
+                    <h2></h2>
+                    <h4></h4>
+                </div>
+            </li>
+            <li>
+                <div class="slide_text">
+                    <h2></h2>
+                    <h4></h4>
+                </div>
+            </li>
+        </ul>
+        </div>
+        <div id="slide_btbox">
+            <img src="icons/prev.png" alt="slide_prev_btn">
+            <img src="icons/p.png" alt="slide_prev_btn">
+            <ul>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+            <img src="icons/next.png" alt="">
+        </div>
+    </div>
+<!--  -->
+    <div id="best">
+        <video src="images/bestseller-bg.mp4" id="best_bg" autoplay muted></video>
+        <div id="best_product">\
+            <div id="best_product_bg1"></div>
+            <div id="best_product_bg2"></div>
+            <div id="best_product_box">
+                <h2>BEST SELLER</h2>
+                <ul>
+                    <li>
+                        <img src="" alt="" class="best_product">
+                        <h4>CREAM SKIN REFINER</h4>
+                        <h3>크림 스킨</h3>
+                        <p>/p>
+                        <img src="" alt="" class="best_icon">
+                        <h6>스킨인데 뛰어난 보습지속력과, 산뜻한 <br>
+                            사용감으로 이만한 스킨은 없는 것 <br>
+                            같아요</h6>
+                    </li>
+                    <li>
+                        <img src="" alt="" class="best_product">
+                        <h4>NEO CUSHION</h4>
+                        <h3></h3>
+                        <p></p>
+                        <img src="" alt="" class="best_icon">
+                        <h6></h6>
+                    </li>
+                    <li>
+                        <img src="" alt="" class="best_product">
+                        <h4></h4>
+                        <h3></h3>
+                        <p></p>
+                        <img src="" alt="" class="best_icon">
+                        <h6></h6>
+                    </li>
+                </ul>
+                <img src="" alt="" id="best_prevbtn">
+                <img src="" alt="" id="best_nextbtn">
+            </div>
+        </div>
+    </div>
+    <!--  -->
+    <div id="banner">
+        <ul>
+            <li>
+                <img src="" alt="">
+                <h3></h3>
+                <p></p>
+                <div class="banner_rotate">123123</div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <h3></h3>
+                <p></p>
+                <div class="banner_rotate">123123</div>
+            </li>
+            <li>
+                <img src="" alt="">
+                <h3></h3>
+                <p></p>
+                <div class="banner_rotate">123123</div>
+            </li>
+        </ul>
+    </div>
+    <!--  -->
+    <div id="banner2">
+        <div id="banner2_box1">
+            <img src="" alt="">
+            <h3></h3>
+            <p></p>
+            <div class="banner2_rotate"></div>
+        </div>
+        <div id="banner2_box2">
+            <img src="" alt="">
+            <h3></h3>
+            <p></p>
+            <div class="banner2_rotate"></div>
+        </div>
+        <div id="banner2_box3">
+            <img src="" alt="">
+            <h3></h3>
+            <p></p>
+            <div class="banner2_rotate"></div>
+        </div>
+        <div id="banner2_box4">
+            <img src="" alt="">
+            <h3></h3>
+            <p></p>
+            <div class="banner2_rotate"></div>
+        </div>
+    </div>
+    <!--  -->
+    <div id="sns">
+        <h2><span>#</span>GLOW LIVE</h2>
+        <h4>SHARE YOUR GLOW MOMENTS WITH LANEIGE!</h4>
+        <ul>
+            <li>
+                <img src="icons/sns1.jpg" alt="" class="sns_img">
+                <img src="icons/lock.png" alt="" class="sns_cart">
+                <div class="sns_hover_box">
+                    <h5>@miittocador</h5>
+                    <p>buenos días! <img src="icons/flower.jpg" alt=""> tal como me des</p>
+                </div>
+            </li>
+            <li>
+                <img src="icons/sns2.jpg" alt="" class="sns_img">
+                <img src="icons/lock.png" alt="" class="sns_cart">
+                <div class="sns_hover_box"></div>
+            </li>
+            <li>
+                <img src="icons/sns3.jpg" alt="" class="sns_img">
+                <img src="icons/lock.png" alt="" class="sns_cart">
+                <div class="sns_hover_box"></div>
+            </li>
+            <li>
+                <img src="icons/sns4.jpg" alt="" class="sns_img">
+                <img src="icons/lock.png" alt="" class="sns_cart">
+                <div class="sns_hover_box"></div>
+            </li>
+            <li>
+                <img src="icons/sns5.jpg" alt="" class="sns_img">
+                <img src="icons/lock.png" alt="" class="sns_cart">
+                <div class="sns_hover_box"></div>
+            </li>
+        </ul>
+        <button>View More</button>
+    </div>
+    <!--  -->
+    <footer>
+        <div id="footer1">
+            <div id="footer1_box">
+                <ul id="footer1_menu1">
+                    <ul>
+                        <li>회사소개</li>
+                        <li>서비스이용약관</li>
+                        <li>UGC 이용약관</li>
+                        <li>개인정보처리방침</li>
+                        <li>영상정보처리방침</li>
+                        <li>뷰티포인트</li>
+                        <li>사이트맵</li>
+                        <li>공지사항</li>
+                    </ul>
+                </ul>
+                <ul id="footer1_menu2">
+                    <ul>
+                        <li><img src="icons/sns_instagram_renew.png" alt=""></li>
+                        <li><img src="icons/sns_facebook_renew.png" alt=""></li>
+                        <li><img src="icons/sns_youtube_renew.png" alt=""></li>
+                        <li><img src="icons/sns_tiktok_renew.png" alt=""></li>
+                    </ul>
+                </ul>
+            </div>
+        </div>
+        <div id="footer2">
+            <div id="footer2_left">
+                <ul>
+                    <li>고객상담실 (수신자요금부담) 080-023-5454</li>
+                    <li>운영시간 : 월-금 09:00 ~ 18:00</li>
+                    <li><img src="icons/wa-mark.png" alt=""></li>
+                </ul>
+                <p>© AMOREPACIFIC CORPORATION. ALL RIGHTS RESERVED.</p>
+            </div>
+            <div id="footer2_right">
+                <select name="" id="">
+                    <option value="">한국/한국어</option>
+                    <option value="">INTERNATIONAL/ENGLISH</option>
+                    <option value="">中国大陆/中文</option>
+                    <option value="">SINGAPORE/ENGLISH</option>
+                    <option value="">MALAYSIA/ENGLISH</option>
+                    <option value="">ประเทศไทย/ไทย</option>
+                    <option value="">VIỆT NAM/TIẾNG VIỆT</option>
+                    <option value="">INDONESIA/BAHASA</option>
+                    <option value="">HONGKONG CHINA/ENGLISH</option>
+                    <option value="">中國香港/繁體中文</option>
+                    <option value="">CANADA/ENGLISH</option>
+                    <option value="">UNITED STATES/ENGLISH</option>
+                </select>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
